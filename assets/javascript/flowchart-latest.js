@@ -464,12 +464,44 @@
             var line = chart.paper.path(path, pathValues);
 
             line.attr({
-                class:'addNode '+'relation_'+relationLineClass.fromNodeId+"_"+relationLineClass.toNodeId,                
                 stroke: chart.options["line-color"],
                 "stroke-width": chart.options["line-width"],
                 "arrow-end": chart.options["arrow-end"]
             });
             var font = chart.options.font, fontF = chart.options["font-family"], fontW = chart.options["font-weight"];
+
+
+            if (font && line.attr({
+                font: font
+            }), fontF && line.attr({
+                "font-family": fontF
+            }), fontW && line.attr({
+                "font-weight": fontW
+            }), true) {
+                var centerText1 = !1, textPath1 = chart.paper.text(0, 0, "+"), isHorizontal = !1, firstTo = to[0];
+                from.y === firstTo.y && (isHorizontal = !0);
+                var x = 0, y = 0;
+                centerText1 ? (x = from.x > firstTo.x ? from.x - (from.x - firstTo.x) / 2 : firstTo.x - (firstTo.x - from.x) / 2,
+                y = from.y > firstTo.y ? from.y - (from.y - firstTo.y) / 2 : firstTo.y - (firstTo.y - from.y) / 2,
+                isHorizontal ? (x -= textPath1.getBBox().width / 2, y -= chart.options["text-margin"]) : (x += chart.options["text-margin"],
+                y -= textPath1.getBBox().height / 2)) : (x = from.x, y = from.y, isHorizontal ? (x += chart.options["text-margin"] / 2,
+                y -= chart.options["text-margin"]) : (x += chart.options["text-margin"] / 2, y += chart.options["text-margin"])),
+                textPath1.attr({
+                     class:'addNode '+'relation_'+relationLineClass.fromNodeId+"_"+relationLineClass.toNodeId,
+                    "text-anchor": "start",
+                    "font-size": chart.options["font-size"],
+                    fill: chart.options["font-color"],
+                    x: x+40,
+                    y: y
+                }), font && textPath1.attr({
+                    font: font
+                }), fontF && textPath1.attr({
+                    "font-family": fontF
+                }), fontW && textPath1.attr({
+                    "font-weight": fontW
+                });
+            }
+
             if (font && line.attr({
                 font: font
             }), fontF && line.attr({

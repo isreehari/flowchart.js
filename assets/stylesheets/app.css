@@ -1,3 +1,25 @@
 .main-container{
    margin-top: 90px;
 }
+
+#chart svg{
+  min-width: 120px!important;
+}
+.addNode{
+    cursor: pointer;
+    font-size: 24px!important;
+    /*opacity: 0;
+    animation: blinking 1s linear infinite;*/
+}
+
+/*@keyframes blinking {
+  from,
+  49.9% {
+    opacity: 0;
+  }
+  50%,
+  to {
+    opacity: 1;
+  }
+}
+*/
