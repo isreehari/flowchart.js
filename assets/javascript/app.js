@@ -20,8 +20,27 @@ var flowChartCode =  "node1=>start: Start|past:>http://www.google.com[blank]\n"
                     +"node8(yes,top)->node9->node2\n"
                     +"node8(no,left)->node10->node2";*/
   var flowChartCode = null;
-  var flowChartNode = { 'nodes':[ 'node1=>start: Start|past[blank]','node2=>end: End|future'],
-                        'condition':['node1->node2']};
+  var flowChartNode = {
+                    'nodes':[ 'node1=>start: Start|past:>http://www.google.com[blank]',
+                              'node2=>end: End|future',
+                              'node3=>condition: Check \ncollege|current',
+                              'node4=>operation: Rejected \nNotification \nstudent',
+                              'node5=>condition: Submitted \nBy Student?|current',
+                              'node6=>operation: Submit \nNotification',
+                              'node7=>operation: Set Approval1',
+                              'node8=>condition: Waiting for \nApproval1?|current',
+                              'node9=>operation: Send Approval \nNotification',
+                              'node10=>operation: Send Rejected \nNotification',
+                            ],
+                    'condition':['node1->node3',
+                                 'node3(no,left)->node4',
+                                 'node3(yes,bottom)->node5',
+                                 'node5(yes, right)->node6(right)->node7(right)->node8',
+                                 'node5(no)->node2',
+                                 'node4->node2',
+                                 'node8(yes,top)->node9->node2',
+                                 'node8(no,left)->node10->node2',
+                                ]};
 
                   $.each(flowChartNode.nodes,function(key,val){
                       if(flowChartCode)
@@ -60,13 +79,13 @@ var flowChartCode =  "node1=>start: Start|past:>http://www.google.com[blank]\n"
 diagram = flowchart.parse(flowChartCode);
 //diagram.drawSVG('chart');
 diagram.drawSVG('chart', {
-                            // 'x': 30,
-                            // 'y': 50,
+                            'x': 0,
+                            'y': 0,
                             'line-width': 3,
                             'maxWidth': 3,//ensures the flowcharts fits within a certian width
                             'line-length': 100,
                             'text-margin': 10,
-                            'font-size': 14,
+                            'font-size': 12,
                             'font': 'normal',
                             'font-family': 'Helvetica',
                             'font-weight': 'normal',

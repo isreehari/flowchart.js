@@ -488,6 +488,7 @@
                 y -= chart.options["text-margin"]) : (x += chart.options["text-margin"] / 2, y += chart.options["text-margin"])),
                 textPath1.attr({
                      class:'addNode '+'relation_'+relationLineClass.fromNodeId+"_"+relationLineClass.toNodeId,
+                    "data-ng-click": 'addNewNode()',
                     "text-anchor": "start",
                     "font-size": chart.options["font-size"],
                     fill: chart.options["font-color"],
